@@ -1,7 +1,3 @@
-/**
-    Organizes input parameters, filenames and displays useful information.
-*/
-
 #ifndef _INTERFACE_
 #define _INTERFACE_
 
@@ -10,6 +6,9 @@
 #include <map>
 #include <iomanip>
 
+/**
+    Organizes input parameters, filenames and displays useful information.
+*/
 class Interface {
 public:
     Interface () {

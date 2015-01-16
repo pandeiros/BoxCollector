@@ -36,8 +36,6 @@ void Interface::configureParameters () {
     mapParamStrings["-f"] = std::make_pair ("", "--file");
     mapParamStrings["--output"] = std::make_pair ("", "-o");
     mapParamStrings["-o"] = std::make_pair ("", "--output");
-    mapParamStrings["--stats"] = std::make_pair ("", "-s");
-    mapParamStrings["-s"] = std::make_pair ("", "--stats");
 }
 
 void Interface::printParams () {

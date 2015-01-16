@@ -1,7 +1,3 @@
-/**
-    Main project class. Aggregates i/o managers and box collection.
-*/
-
 #ifndef _PROGRAM_
 #define _PROGRAM_
 
@@ -11,6 +7,9 @@
 #include "Collection.h"
 #include <iostream>
 
+/**
+    Main project class. Aggregates i/o managers and box collection.
+*/
 class Program {
 public:
     Program () {
