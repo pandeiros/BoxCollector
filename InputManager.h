@@ -9,6 +9,7 @@
 #include <iostream>
 #include <sstream>
 #include "Collection.h"
+#include "MessageHandler.h"
 
 /**
     
@@ -24,8 +25,8 @@ public:
     // \param string filename : Name of the file to read data from.
     InputManager (const std::string filename);
 
-    // Load data from file. Return vector of Boxes.
-    Collection::Boxes loadData ();
+    // Load data from file.
+    bool loadData (Collection::Boxes & boxes);
 
     /// Setters
 
@@ -34,6 +35,9 @@ public:
 private:
     // Filename to read data from.
     std::string mFilename = "";
+
+    // True if default constructor with default file name was used.
+    bool isDefaultPath = true;
 };
 
 #endif

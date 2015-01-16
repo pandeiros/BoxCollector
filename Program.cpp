@@ -16,7 +16,7 @@ bool Program::acquireData () {
     std::string filename = mInterface.getStringParam ("--file");
     if (filename != "") {
         mInputManager.setFilename (filename);
-        mInputManager.loadData ();
+        mInputManager.loadData (*mCollection.getBoxes());
     }
     else {
         std::cout << " >> ERROR: No input file to read from!\n";

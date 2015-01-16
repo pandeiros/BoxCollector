@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "Box.h"
+#include "BoxArrangement.h"
 
 /**
 
@@ -20,10 +21,14 @@ public:
     /// Getters
 
     Boxes * getBoxes ();    // Return pointer to Box container.
+    BoxArrangement * getBoxArrangement ();  // Return pointer to arranged boxes.
 
 private:
     // Box collection;
     Boxes mBoxes;
+
+    // Arranged boxes.
+    BoxArrangement mBoxArrangement;
 };
 
 #endif

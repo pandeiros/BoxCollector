@@ -1,0 +1,5 @@
+### Box Collector project data file ###
+#
+# Each line represents a single box with 3 parameters: width, height and depth.
+1.0     1.0     1.0
+2.0     2.0     2.0 
