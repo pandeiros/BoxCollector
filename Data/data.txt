@@ -1,5 +1,8 @@
-### Box Collector project data file ###
+# =================== Box Collector project data file ==========================
+# ------------------------------------------------------------------------------
+# Each line represents a single box with 3 parameters: width, length and height.
+# Each value is separated by space.
+# Lines starting with '#' will be ignored (has to be first character in a line).
 #
-# Each line represents a single box with 3 parameters: width, height and depth.
-1.0     1.0     1.0
-2.0     2.0     2.0 
+1.11 2.54 3.54
+2.0 2.0 2.0

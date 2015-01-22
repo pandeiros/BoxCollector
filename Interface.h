@@ -1,3 +1,12 @@
+/**
+    @Title:   [AAL] - "Orthodox Box Collector"
+    @Author:  Pawe³ Kaczyñski
+
+    Warsaw University of Technology
+    Faculty of Electronics and Information Technology
+
+*/
+
 #ifndef _INTERFACE_
 #define _INTERFACE_
 
@@ -35,7 +44,7 @@ public:
 private:
     int mArgCount = 0;
 
-    std::string mUsageMessage = "Usage msg.";    // TEMP
+    std::string mUsageMessage = "Usage msg.";    // TODO Change this
     std::string mHelpMessage = "Help msg.";
 
     // Param name => (if exists; associated param)

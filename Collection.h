@@ -1,12 +1,23 @@
+/**
+    @Title:   [AAL] - "Orthodox Box Collector"
+    @Author:  Pawe³ Kaczyñski
+
+    Warsaw University of Technology
+    Faculty of Electronics and Information Technology
+
+*/
+
 #ifndef _COLLECTION_
 #define _COLLECTION_
 
 #include <vector>
+#include <iomanip>
+#include <iostream>
 #include "Box.h"
 #include "BoxArrangement.h"
 
 /**
-
+    Collection of boxes. Contains also BoxArrangement object for holding current box
 */
 class Collection {
 public:
@@ -18,17 +29,24 @@ public:
     ~Collection () {
     };
 
+    // Prints information about all boxes in Collection.
+    void printAll ();
+
     /// Getters
 
     Boxes * getBoxes ();    // Return pointer to Box container.
     BoxArrangement * getBoxArrangement ();  // Return pointer to arranged boxes.
+
+    /// Setters
+
+    void setBoxes (Boxes & boxes);  // Set new collection of boxes.
 
 private:
     // Box collection;
     Boxes mBoxes;
 
     // Arranged boxes.
-    BoxArrangement mBoxArrangement;
+    BoxArrangement * mBoxArrangement;
 };
 
 #endif

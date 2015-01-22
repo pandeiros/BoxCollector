@@ -1,7 +1,16 @@
+/**
+    @Title:   [AAL] - "Orthodox Box Collector"
+    @Author:  Pawe³ Kaczyñski
+
+    Warsaw University of Technology
+    Faculty of Electronics and Information Technology
+
+*/
+
 #include "Box.h"
 
-Box::Box (const float width, const float height, const float depth)
-    : mWidth (width), mHeight (height), mDepth (height) {
+Box::Box (const float width, const float length, const float height)
+    : mWidth (width), mHeight (height), mLength (length), mVolume (width * length * height) {
 }
 
 float Box::getWidth () {
@@ -12,6 +21,10 @@ float Box::getHeight () {
     return mHeight;
 }
 
-float Box::getDepth () {
-    return mDepth;
+float Box::getLength () {
+    return mLength;
+}
+
+float Box::getVolume () {
+    return mVolume;
 }

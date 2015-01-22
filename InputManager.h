@@ -7,9 +7,19 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+/**
+    @Title:   [AAL] - "Orthodox Box Collector"
+    @Author:  Pawe³ Kaczyñski
+
+    Warsaw University of Technology
+    Faculty of Electronics and Information Technology
+
+*/
+
 #include <sstream>
 #include "Collection.h"
 #include "MessageHandler.h"
+#include "Interface.h"
 
 /**
     
@@ -26,7 +36,12 @@ public:
     InputManager (const std::string filename);
 
     // Load data from file.
+    // \param Boxes boxes : Reference to container for storing info. about boxes.
     bool loadData (Collection::Boxes & boxes);
+
+    // Parse one row of data. Return a new Box object.
+    // \param string row : One row of data file with info. about one box.
+    Box * parseDataRow (const std::string & row);
 
     /// Setters
 

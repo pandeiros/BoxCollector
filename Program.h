@@ -1,11 +1,21 @@
+/**
+    @Title:   [AAL] - "Orthodox Box Collector"
+    @Author:  Pawe³ Kaczyñski
+
+    Warsaw University of Technology
+    Faculty of Electronics and Information Technology
+
+*/
+
 #ifndef _PROGRAM_
 #define _PROGRAM_
 
+#include <iostream>
 #include "Interface.h"
 #include "InputManager.h"
 #include "OutputManager.h"
 #include "Collection.h"
-#include <iostream>
+#include "MessageHandler.h"
 
 /**
     Main project class. Aggregates i/o managers and box collection.

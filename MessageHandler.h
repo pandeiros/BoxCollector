@@ -1,7 +1,17 @@
+/**
+    @Title:   [AAL] - "Orthodox Box Collector"
+    @Author:  Pawe³ Kaczyñski
+
+    Warsaw University of Technology
+    Faculty of Electronics and Information Technology
+
+*/
+
 #ifndef _MESSAGE_HANDLER_
 #define _MESSAGE_HANDLER_
 
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <map>
 
@@ -29,6 +39,11 @@ public:
     // \param (opt) Type type : Type of the message.
     // \see MessageHandler::Type
     static void printMessage (const std::string message, Type type = Type::UNKNOWN);
+
+    // Prints custom debug section indicator.
+    // \param string title : Debug section title.
+    // \param bool isBegin : True if start of the sectiom false if end.
+    static void printDebugSection (const std::string title, bool isBegin);
 };
 
 #endif
