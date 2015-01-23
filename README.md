@@ -30,12 +30,12 @@ upakowanie kartonów, tzn. takie, które zwalnia najwięcej miejsca.
 
 #### Project classes
 * Program
-* Collection
-* Box
-* BoxArrangement
-* InputManager
-* OutputManager
-* Interface
+    * Collection
+        * Box
+        * BoxArrangement
+    * InputManager
+    * OutputManager
+    * Interface
 * Utilities
 * MessageHandler
 
@@ -53,8 +53,9 @@ upakowanie kartonów, tzn. takie, które zwalnia najwięcej miejsca.
 #### Output file
 * Global results example row
 ```
-2015-01-23 17:26:37 | 10000      |                              |                              | VOLUME          | 1.332    |
+2015-01-23 17:27:44 | 4          | ./data/data.txt              | ./tests/results.txt          | VOLUME          | 1.332 |
 ```
+
 * Local results example file
 ```
 ### BOX COLLECTOR RESULTS ###
