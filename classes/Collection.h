@@ -35,7 +35,7 @@ public:
     // \param unsigned int number : Number of boxes to generate.
     // \param (opt) float max : Additional generator parameter - max box size in one axis.
     // \param (opt) unsigned int precision : Floating point precision.
-    void generateRandomData (unsigned int number, unsigned int max = 1, unsigned int precision = 2);
+    void generateRandomData (unsigned long number, unsigned int max = 1, unsigned int precision = 2);
 
     /// Getters
 

@@ -29,13 +29,13 @@ void Collection::printAll () {
     }
 }
 
-void Collection::generateRandomData (unsigned int number, unsigned int max, unsigned int precision) {
+void Collection::generateRandomData (unsigned long number, unsigned int max, unsigned int precision) {
     // Empty current container
     deleteBoxes ();
 
     // Generate boxes.
-    for (unsigned int i = 0; i < number; ++i) {
-        int randomValue = max * std::pow (10, precision);
+    for (unsigned long i = 0; i < number; ++i) {
+        long randomValue = max * std::pow (10, precision);
         float l, w, h;
         l = (float)(rand () % randomValue);
         l /= (float)std::pow (10, precision);
