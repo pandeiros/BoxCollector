@@ -20,15 +20,25 @@ upakowanie kartonów, tzn. takie, które zwalnia najwięcej miejsca.
 * `-u | --usage` : Prints message with possible input parameters.
 * `-f | --file [filename]` : Input file with information about boxes (*look below at "Input file"*)
 * `-o | --output [filename]` : Output file to be created with program results.
-* `--algorithm-1` : Program uses ... algorithm (*check out Readme.md*).
 * `--generate-tests [number_of_boxes]` : Forces program to generate its own tests in given number.
 * `--algorithm [VOLUME | ]` : Specifies which algorithm to use. If not specified, program will use the best one.
 
 #### Project files
-* TBA
+* classes folder : Contains or project classes.
+* data folder : Contains test files.
+* tests folder : Contains results filed.
 
 #### Project classes
-* TBA
+* Program
+* Collection
+* Box
+* BoxArrangement
+* InputManager
+* OutputManager
+* Interface
+* Utilities
+* MessageHandler
+
 
 #### Input file
 * Each line represents a single box with 3 parameters: length, width and height.
@@ -41,10 +51,43 @@ upakowanie kartonów, tzn. takie, które zwalnia najwięcej miejsca.
 ```
 
 #### Output file
-* TBA
+* Global results example row
+```
+2015-01-23 17:26:37 | 10000      |                              |                              | VOLUME          | 1.332    |
+```
+* Local results example file
+```
+### BOX COLLECTOR RESULTS ###
+
+    >>> DATASET INFO <<<
+DATE       | - 
+RECORDS    | 4
+INPUT      | ./data/data.txt
+
+    >>> TEST <<<
+ALGORITHM  | -
+TIME       | 0.000000 [sec]
+STACKS     | 3
+TOTAL VOL. | 27.980675
+
+
+BOX ARRANGEMENT
+=====================================================================
+ ID          | LENGTH     | WIDTH      | HEIGHT     | VOLUME        |
+=====================================================================
+                             Stack 0
+---------------------------------------------------------------------
+           2 | 2          | 5          | 1          | 10            |
+
+                             Stack 1
+---------------------------------------------------------------------
+           0 | 2.54       | 3.54       | 1.11       | 9.98068       |
+           3 | 1          | 1          | 1          | 1             |
+
+                             Stack 2
+---------------------------------------------------------------------
+           1 | 2          | 2          | 2          | 8             |
+```
 
 #### Algorithms and structures
-* TBA
-
-#### Other information
-* TBA
+* VOLUME based algorithm : Sort boxes based on their volume and creates box stacks starting from the biggest and trying to fit next boxes inside previously created stacks or create new one.

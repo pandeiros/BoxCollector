@@ -58,7 +58,7 @@ bool OutputManager::saveResults (Collection * collection, Interface * interf, bo
     Utilities::replaceKeyword ("$time", std::to_string (collection->getBoxArrangement ()->getTime ()), templateContent);
     Utilities::replaceKeyword ("$stacks", std::to_string (collection->getBoxArrangement ()->getSize ()), templateContent);
     Utilities::replaceKeyword ("$volume", std::to_string (collection->getBoxArrangement ()->getTotalVolume ()), templateContent);
-    Utilities::replaceKeyword ("$row", collection->getBoxArrangement ()->getAllStacks (), templateContent);
+    Utilities::replaceKeyword ("$rows", collection->getBoxArrangement ()->getAllStacks (), templateContent);
 
     // Save stats.
     output << templateContent;
