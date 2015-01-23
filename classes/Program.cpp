@@ -78,6 +78,10 @@ void Program::run () {
     else
         mOutputManager.saveResults (&mCollection, &mInterface);
 
+    // Saving global results
+    mOutputManager.saveGlobalResults (&mCollection, &mInterface);
+   
+
 }
 
 bool Program::acquireData () {

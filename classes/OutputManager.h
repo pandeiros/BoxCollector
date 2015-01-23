@@ -40,7 +40,7 @@ public:
 
     // Collects stats and saves them.
     // \param bool : Whether to use predefined path for files.
-    bool saveGlobalResults (Collection * collection);
+    bool saveGlobalResults (Collection * collection, Interface * interf);
 
     /// Setters
 
@@ -63,5 +63,10 @@ template <typename Type>
 inline std::string OutputManager::formatWidth (const Type value, const unsigned int width, 
                                                const char fill, const std::string separator, 
                                                bool showPos) {
-    return std::string ();
+    std::stringstream ss;
+    ss << std::fixed << std::setprecision (3) << std::left << std::setw (width)
+        << std::setfill (fill) << (showPos ? std::showpos : std::noshowpos)
+        << value << separator;
+
+    return ss.str ();
 }

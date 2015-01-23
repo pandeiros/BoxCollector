@@ -75,10 +75,6 @@ private:
     void arrangeFirstBest ();   //
     //void arrangeXYZ (); // 
 
-    // TEMP
-    // Scope through stacks and check if one can be inserted into another.
-    // void rearrange ();
-
     // All boxes.
     BoxStack mBoxes;
 
