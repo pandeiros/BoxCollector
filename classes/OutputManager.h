@@ -16,6 +16,7 @@
 #define GLOBAL_RESULTS_FILE "global_results.txt"
 #define TEMPLATE_FILE "results_template.txt"
 
+#include <iomanip>
 #include <fstream>
 #include <sstream>
 #include <ctime>

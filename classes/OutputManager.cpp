@@ -17,15 +17,29 @@ bool OutputManager::saveResults (Collection * collection, Interface * interf, bo
     std::stringstream ss;
 
     // Acquire desired final path.
-    if (defaultPath) {
-        auto time = std::time (nullptr);
+if (defaultPath) {
+time_t rawtime;
+  struct tm * timeinfo;
+  char buffer[80];
+
+  time (&rawtime);
+  timeinfo = localtime(&rawtime);
+
+  strftime(buffer,80,"_%d-%m-%Y_%I-%M-%S",timeinfo);
+  std::string str(buffer);
+
+  currentDateTime = str;
+//Utilities::replaceKeyword (":", "-", currentDateTime);
+    resultsPath = RESULTS_FOLDER + resultsPath + currentDateTime;
+currentDateTime = currentDateTime.substr(1, currentDateTime.size() - 2);
+        /*auto time = std::time (nullptr);
         auto localTime = *std::localtime (&time);
         std::stringstream ss;
         ss << std::put_time (&localTime, "_%Y-%m-%d_%H.%M.%S.txt");
         resultsPath = RESULTS_FOLDER + resultsPath + ss.str ();
         ss.str ("");
         ss << std::put_time (&localTime, "%Y-%m-%d %H:%M:%S");
-        currentDateTime = ss.str ();
+        currentDateTime = ss.str ();*/
     }
 
     // Open file template with prepared header
@@ -80,11 +94,28 @@ bool OutputManager::saveGlobalResults (Collection * collection, Interface * inte
     }
 
     // Obtain date.
-    auto time = std::time (nullptr);
+    /*auto time = std::time (nullptr);
     auto localTime = *std::localtime (&time);
     std::stringstream ss;
     ss << std::put_time (&localTime, "%Y-%m-%d %H:%M:%S");
-    currentDateTime = ss.str ();
+    currentDateTime = ss.str ();*/
+// Acquire desired final path.
+//    if (defaultPath) {
+time_t rawtime;
+  struct tm * timeinfo;
+  char buffer[80];
+
+  time (&rawtime);
+  timeinfo = localtime(&rawtime);
+
+  strftime(buffer,80,"%d-%m-%Y_%H-%M-%S",timeinfo);
+  std::string str(buffer);
+
+  currentDateTime =  str;
+
+//Utilities::replaceKeyword (":", "-", currentDateTime);
+
+
 
     // Prepare output
     std::string row = "";

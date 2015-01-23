@@ -5,3 +5,4 @@ DATE                | RECORDS    | INPUT FILE                   | OUTPUT FILE   
 2015-01-23 17:26:37 | 10000      |                              |                              | VOLUME          | 1.332    | 
 2015-01-23 17:27:44 | 4          | ./data/data.txt              | ./tests/results.txt          |                 | 0.000    | 
 2015-01-23 17:29:11 | 4          | ./data/data.txt              | ./tests/results.txt          |                 | 0.000    | 
+23-01-2015 08:59:16 | 1000       |                              |                              | VOLUME          | 0.005    | 
