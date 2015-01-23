@@ -39,6 +39,7 @@ public:
 
     /// Setters
 
+    void setBoxArrangement (BoxArrangement * boxArrangement);   // Set new box arrangement pointer.
     void setBoxes (Boxes & boxes);  // Set new collection of boxes.
 
 private:

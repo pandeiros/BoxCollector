@@ -59,8 +59,8 @@ Box * InputManager::parseDataRow (const std::string & row) {
     Box * newBox = nullptr;
 
     try {
-        ss >> w >> l >> h;
-        newBox = new Box (w, l, h);
+        ss >> l >> w >> h;
+        newBox = new Box (l, w, h);
         return newBox;
     }
     catch (...) {

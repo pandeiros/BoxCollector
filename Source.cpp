@@ -8,7 +8,7 @@
 */
 
 #include <iostream>
-#include "Program.h"
+#include "classes/Program.h"
 
 int main (int argc, char *argv[]) {
 

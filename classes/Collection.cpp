@@ -17,15 +17,9 @@ void Collection::printAll () {
     std::cout << std::left << std::setw (8) << "Height" << "| ";
     std::cout << std::left << std::setw (12) << "Volume" << "\n";
     
-    // Print content.
-    unsigned int count = 0;
+    // Print content.    
     for (Box * box : mBoxes) {
-        std::cout << std::right << std::setw (6) << count << ":  ";
-        std::cout << std::left << std::setw (10) << box->getWidth();
-        std::cout << std::left << std::setw (10) << box->getLength ();
-        std::cout << std::left << std::setw (10) << box->getHeight ();
-        std::cout << std::left << std::setw (14) << box->getVolume () << "\n";
-        ++count;
+        std::cout << *box;
     }
 }
 
@@ -39,4 +33,8 @@ BoxArrangement * Collection::getBoxArrangement () {
 
 void Collection::setBoxes (Boxes & boxes) {
     this->mBoxes = boxes;
+}
+
+void Collection::setBoxArrangement (BoxArrangement * boxArrangement) {
+    this->mBoxArrangement = boxArrangement;
 }

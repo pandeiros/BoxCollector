@@ -10,7 +10,17 @@
 #include "MessageHandler.h"
 
 void MessageHandler::printMessage (const std::string message, Type type) {
-    std::cout << "\n<!> ERROR : " << message << "\n\n";
+    switch (type) {
+        case ERROR:
+            std::cout << "\n<!!!> ERROR : " << message << "\n\n";
+            break;
+        case WARNING:
+            std::cout << "\n<?> Warning : " << message << "\n\n";
+            break;
+
+        default:
+            break;
+    }
 }
 
 void MessageHandler::printDebugSection (const std::string title, bool isBegin) {

@@ -14,9 +14,12 @@
 #include <string>
 #include <map>
 #include <iomanip>
+#include "MessageHandler.h"
 
 /**
     Organizes input parameters, filenames and displays useful information.
+    When a parameter is given and it does not require any other parameters,
+    the unnecessary ones are ignored (error does not occur).
 */
 class Interface {
 public:
@@ -28,17 +31,21 @@ public:
     // Constructor with input parameters
     Interface (int argc, char* argv[]);
 
-    // Configures maps with proper parameters
+    // Configure maps with proper parameters
     void configureParameters ();
 
-    // Prints all input parameters
+    // Print all input parameters
     void printParams ();
 
-    // Prints some helpful information to the user before terminating.
-    void printUsage ();
+    // Print some helpful information to the user before terminating.
     void printHelp ();
 
-    // Getters
+    // Print possible input parameters before terminating.
+    void printUsage ();
+
+    /// Getters
+
+    bool getBoolParam (const std::string key);
     std::string getStringParam (const std::string key);
 
 private:

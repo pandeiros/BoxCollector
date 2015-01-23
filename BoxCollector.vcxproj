@@ -66,25 +66,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Box.h" />
-    <ClInclude Include="BoxArrangement.h" />
-    <ClInclude Include="Collection.h" />
-    <ClInclude Include="MessageHandler.h" />
-    <ClInclude Include="InputManager.h" />
-    <ClInclude Include="Interface.h" />
-    <ClInclude Include="OutputManager.h" />
-    <ClInclude Include="Program.h" />
+    <ClCompile Include="classes\Box.cpp" />
+    <ClCompile Include="classes\BoxArrangement.cpp" />
+    <ClCompile Include="classes\Collection.cpp" />
+    <ClCompile Include="classes\InputManager.cpp" />
+    <ClCompile Include="classes\Interface.cpp" />
+    <ClCompile Include="classes\MessageHandler.cpp" />
+    <ClCompile Include="classes\OutputManager.cpp" />
+    <ClCompile Include="classes\Program.cpp" />
+    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Box.cpp" />
-    <ClCompile Include="BoxArrangement.cpp" />
-    <ClCompile Include="Collection.cpp" />
-    <ClCompile Include="MessageHandler.cpp" />
-    <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="Interface.cpp" />
-    <ClCompile Include="OutputManager.cpp" />
-    <ClCompile Include="Program.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClInclude Include="classes\Box.h" />
+    <ClInclude Include="classes\BoxArrangement.h" />
+    <ClInclude Include="classes\Collection.h" />
+    <ClInclude Include="classes\InputManager.h" />
+    <ClInclude Include="classes\Interface.h" />
+    <ClInclude Include="classes\MessageHandler.h" />
+    <ClInclude Include="classes\OutputManager.h" />
+    <ClInclude Include="classes\Program.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

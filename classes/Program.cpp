@@ -20,6 +20,15 @@ void Program::run () {
     mInterface.printHelp ();
     mInterface.printUsage ();
     MessageHandler::printDebugSection ("Parameters", false);
+#else
+    if (mInterface.getBoolParam ("--help")) {
+        mInterface.printHelp ();
+        return;
+    }
+    else if (mInterface.getBoolParam ("--usage")) {
+        mInterface.printUsage ();
+        return;
+    }
 #endif
 
     // Load data.
@@ -30,6 +39,11 @@ void Program::run () {
     mCollection.printAll ();
     MessageHandler::printDebugSection ("Collection content", false);
 #endif
+
+    mCollection.setBoxArrangement (new BoxArrangement (
+        *mCollection.getBoxes (), BoxArrangement::VOLUME));
+    mCollection.getBoxArrangement ()->arrange ();
+    mCollection.getBoxArrangement ()->printAll ();
 }
 
 bool Program::acquireData () {

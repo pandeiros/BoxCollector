@@ -21,7 +21,8 @@ upakowanie kartonów, tzn. takie, które zwalnia najwięcej miejsca.
 * `-f | --file [filename]` : Input file with information about boxes (*look below at "Input file"*)
 * `-o | --output [filename]` : Output file to be created with program results.
 * `--algorithm-1` : Program uses ... algorithm (*check out Readme.md*).
-* ......
+* `--generate-tests [number_of_boxes]` : Forces program to generate its own tests in given number.
+* `--algorithm [VOLUME | ]` : Specifies which algorithm to use. If not specified, program will use the best one.
 
 #### Project files
 * TBA
@@ -30,10 +31,10 @@ upakowanie kartonów, tzn. takie, które zwalnia najwięcej miejsca.
 * TBA
 
 #### Input file
-* Each line represents a single box with 3 parameters: width, length and height.
+* Each line represents a single box with 3 parameters: length, width and height.
 * Each value is separated by space.
 * Lines starting with '#' will be ignored (has to be first character in a line)
-* Example: 
+* Example:
 ```
 # Ignored line
 1.11 2.54 3.54
