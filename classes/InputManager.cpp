@@ -1,6 +1,6 @@
 /**
     @Title:   [AAL] - "Orthodox Box Collector"
-    @Author:  Pawe≥ KaczyÒski
+    @Author:  Pawe≈Ç Kaczy≈Ñski
 
     Warsaw University of Technology
     Faculty of Electronics and Information Technology
@@ -45,7 +45,7 @@ bool InputManager::loadData (Collection::Boxes & boxes) {
             // Line with comment.
         }
     }
-    
+
 
     inputFile.close ();
 

@@ -1,3 +1,12 @@
+/**
+    @Title:   [AAL] - "Orthodox Box Collector"
+    @Author:  Pawe≈Ç Kaczy≈Ñski
+
+    Warsaw University of Technology
+    Faculty of Electronics and Information Technology
+
+*/
+
 #ifndef _INPUT_MANAGER_
 #define _INPUT_MANAGER_
 
@@ -7,22 +16,13 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-/**
-    @Title:   [AAL] - "Orthodox Box Collector"
-    @Author:  Pawe≥ KaczyÒski
-
-    Warsaw University of Technology
-    Faculty of Electronics and Information Technology
-
-*/
-
 #include <sstream>
 #include "Collection.h"
 #include "MessageHandler.h"
 #include "Interface.h"
 
 /**
-    
+
 */
 class InputManager {
 public:

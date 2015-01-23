@@ -1,6 +1,6 @@
 /**
     @Title:   [AAL] - "Orthodox Box Collector"
-    @Author:  Pawe≥ KaczyÒski
+    @Author:  Pawe≈Ç Kaczy≈Ñski
 
     Warsaw University of Technology
     Faculty of Electronics and Information Technology
@@ -21,7 +21,7 @@ bool Box::check (Box * biggerBox) {
 }
 
 Box::Box (const float length, const float width, const float height)
-    : mWidth (width), mHeight (height), mLength (length), 
+    : mWidth (width), mHeight (height), mLength (length),
     mVolume (width * length * height), mID (GLOBAL_ID++) {
 
     normalize ();

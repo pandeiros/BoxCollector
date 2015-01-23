@@ -1,6 +1,6 @@
 /**
     @Title:   [AAL] - "Orthodox Box Collector"
-    @Author:  Pawe≥ KaczyÒski
+    @Author:  Pawe≈Ç Kaczy≈Ñski
 
     Warsaw University of Technology
     Faculty of Electronics and Information Technology
@@ -51,7 +51,7 @@ private:
 
     float mLength = 0.f;
     float mWidth = 0.f;
-    float mHeight = 0.f;    
+    float mHeight = 0.f;
     float mVolume = 0.f;
 
     // Overloaded output stream operator for displaying information about boxes.

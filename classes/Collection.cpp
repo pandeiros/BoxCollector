@@ -1,6 +1,6 @@
 /**
     @Title:   [AAL] - "Orthodox Box Collector"
-    @Author:  Pawe≥ KaczyÒski
+    @Author:  Pawe≈Ç Kaczy≈Ñski
 
     Warsaw University of Technology
     Faculty of Electronics and Information Technology
@@ -16,8 +16,8 @@ void Collection::printAll () {
     std::cout << std::left << std::setw (8) << "Length" << "| ";
     std::cout << std::left << std::setw (8) << "Height" << "| ";
     std::cout << std::left << std::setw (12) << "Volume" << "\n";
-    
-    // Print content.    
+
+    // Print content.
     for (Box * box : mBoxes) {
         std::cout << *box;
     }

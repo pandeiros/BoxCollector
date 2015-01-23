@@ -1,11 +1,11 @@
 /**
     @Title:   [AAL] - "Orthodox Box Collector"
-    @Author:  Pawe≥ KaczyÒski
+    @Author:  Pawe≈Ç Kaczy≈Ñski
 
     Warsaw University of Technology
     Faculty of Electronics and Information Technology
 
-    */
+*/
 
 #include "BoxArrangement.h"
 
@@ -66,7 +66,7 @@ void BoxArrangement::arrangeVolume () {
     if (mBoxes.size () <= 1) {
         return;
     }
-  
+
     // Check every box.
     for (Box * box : mBoxes) {
         bool inserted = false;
@@ -96,7 +96,7 @@ void BoxArrangement::arrangeVolume () {
             stack.push_back (box);
             mStackGroup.push_back (stack);
         }
-        
+
     }
 
 }
