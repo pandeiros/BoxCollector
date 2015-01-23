@@ -11,6 +11,7 @@
 #include "classes/Program.h"
 
 int main (int argc, char *argv[]) {
+    srand ((unsigned)time (NULL));
 
     Program program (argc, argv);
     program.run ();

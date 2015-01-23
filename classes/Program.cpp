@@ -32,7 +32,24 @@ void Program::run () {
 #endif
 
     // Load data.
-    this->acquireData ();
+    if (mInterface.getStringParam ("--file") != "") {
+        if (mInterface.getStringParam ("--generate-tests") != "")
+            MessageHandler::printMessage ("Input file given and data generation requested - generating ignored.",
+            MessageHandler::WARNING);
+        this->acquireData ();
+    }
+    // Generate data.
+    else if (mInterface.getStringParam ("--generate-tests") != "") {
+        unsigned int tests = Utilities::convertFromString<unsigned int> (mInterface.getStringParam ("--generate-tests"));
+        if (tests > 0)
+            // TODO
+            // Parametrize these values:
+            this->mCollection.generateRandomData (tests, 50, 3);
+        else {
+            MessageHandler::printMessage ("Number of tests is equal or less than 0.", MessageHandler::ERROR);
+            return;
+        }
+    }
 
 #ifdef __DEBUG__
     MessageHandler::printDebugSection ("Collection content", true);
@@ -42,8 +59,25 @@ void Program::run () {
 
     mCollection.setBoxArrangement (new BoxArrangement (
         *mCollection.getBoxes (), BoxArrangement::VOLUME));
+
     mCollection.getBoxArrangement ()->arrange ();
+
+#ifdef __DEBUG__
+    MessageHandler::printDebugSection ("Boxes arrangement", true);
     mCollection.getBoxArrangement ()->printAll ();
+    MessageHandler::printDebugSection ("Boxes arrangement", false);
+#endif
+
+
+    // Saving results
+    std::string filename = mInterface.getStringParam ("--output");
+    if (filename != "") {
+        mOutputManager.setResultsFilename (filename);
+        mOutputManager.saveResults (&mCollection, &mInterface, false);
+    }
+    else
+        mOutputManager.saveResults (&mCollection, &mInterface);
+
 }
 
 bool Program::acquireData () {
@@ -55,7 +89,7 @@ bool Program::acquireData () {
         mCollection.setBoxes (newBoxes);
     }
     else {
-        MessageHandler::printMessage("No input file to read from!\n", MessageHandler::ERROR);
+        MessageHandler::printMessage ("No input file to read from!\n", MessageHandler::ERROR);
         return false;
     }
 

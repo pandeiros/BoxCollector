@@ -15,37 +15,72 @@ mBoxes (boxes), mType (type) {
 }
 
 void BoxArrangement::arrange () {
+    Utilities::timeStart ();
+
     // Sorting based on heuristics.
     sort ();
 
     // Choose arranging method.
     switch (mType) {
         case VOLUME:
-            arrangeVolume ();
+            arrangeFirstBest ();
             break;
 
         default:
             break;
     }
+
+    mTime = Utilities::timeStop ();
 }
 
 void BoxArrangement::printAll () {
     // Print header.
-    std::cout << std::right << std::setw (7) << "Id " << "| ";
+    std::cout << std::right << std::setw (13) << "Id " << "| ";
     std::cout << std::left << std::setw (8) << "Width" << "| ";
     std::cout << std::left << std::setw (8) << "Length" << "| ";
     std::cout << std::left << std::setw (8) << "Height" << "| ";
     std::cout << std::left << std::setw (12) << "Volume" << "\n";
 
+    std::cout << getAllStacks ();
+   
+}
+
+std::string BoxArrangement::getAllStacks () {
+    std::string content = "";
     unsigned int stackNr = 0;
     for (BoxStack & stack : mStackGroup) {
-        std::cout << " -------------------- Stack " << stackNr << " --------------------\n";
+        content += "                             Stack " + std::to_string (stackNr) + "\n";
+        content += "---------------------------------------------------------------------\n";
         for (Box * box : stack) {
-            std::cout << *box;
+            std::stringstream ss;
+            ss << *box;
+            content += ss.str ();
         }
         ++stackNr;
-        std::cout << "\n";
+        content += "\n";
     }
+
+    return content;
+}
+
+BoxArrangement::AlgorithmType BoxArrangement::getType () {
+    return mType;
+}
+
+float BoxArrangement::getTotalVolume () {
+    float sum = 0.f;
+    for (BoxStack & stack : mStackGroup)
+        sum += stack[0]->getVolume ();
+
+    return sum;
+}
+
+unsigned int BoxArrangement::getSize () {
+    return mStackGroup.size ();
+}
+
+float BoxArrangement::getTime () {
+    return mTime;
 }
 
 void BoxArrangement::sort () {
@@ -62,7 +97,7 @@ void BoxArrangement::sort () {
     }
 }
 
-void BoxArrangement::arrangeVolume () {
+void BoxArrangement::arrangeFirstBest () {
     if (mBoxes.size () <= 1) {
         return;
     }

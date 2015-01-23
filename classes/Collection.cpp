@@ -9,6 +9,12 @@
 
 #include "Collection.h"
 
+Collection::~Collection () {
+    deleteBoxes ();
+    if (mBoxArrangement != nullptr)
+        delete mBoxArrangement;
+}
+
 void Collection::printAll () {
     // Print header.
     std::cout << std::right << std::setw (7) << "Id " << "| ";
@@ -20,6 +26,24 @@ void Collection::printAll () {
     // Print content.
     for (Box * box : mBoxes) {
         std::cout << *box;
+    }
+}
+
+void Collection::generateRandomData (unsigned int number, unsigned int max, unsigned int precision) {
+    // Empty current container
+    deleteBoxes ();
+
+    // Generate boxes.
+    for (unsigned int i = 0; i < number; ++i) {
+        int randomValue = max * std::pow (10, precision);
+        float l, w, h;
+        l = (float)(rand () % randomValue);
+        l /= (float)std::pow (10, precision);
+        w = (float)(rand () % randomValue);
+        w /= (float)std::pow (10, precision);
+        h = (float)(rand () % randomValue);
+        h /= (float)std::pow (10, precision);
+        mBoxes.push_back (new Box (l, w, h));
     }
 }
 
@@ -37,4 +61,13 @@ void Collection::setBoxes (Boxes & boxes) {
 
 void Collection::setBoxArrangement (BoxArrangement * boxArrangement) {
     this->mBoxArrangement = boxArrangement;
+}
+
+void Collection::deleteBoxes () {
+    // Clear container if not empty.
+    if (mBoxes.size () != 0) {
+        for (Box * box : mBoxes)
+            delete box;
+        mBoxes.clear ();
+    }
 }

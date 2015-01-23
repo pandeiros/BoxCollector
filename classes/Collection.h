@@ -26,11 +26,16 @@ public:
 
     Collection () {
     };
-    ~Collection () {
-    };
+    ~Collection ();
 
     // Prints information about all boxes in Collection.
     void printAll ();
+
+    // Generate random collection of boxes.
+    // \param unsigned int number : Number of boxes to generate.
+    // \param (opt) float max : Additional generator parameter - max box size in one axis.
+    // \param (opt) unsigned int precision : Floating point precision.
+    void generateRandomData (unsigned int number, unsigned int max = 1, unsigned int precision = 2);
 
     /// Getters
 
@@ -43,6 +48,9 @@ public:
     void setBoxes (Boxes & boxes);  // Set new collection of boxes.
 
 private:
+    // Wipe out current Box container.
+    void deleteBoxes ();
+
     // Box collection;
     Boxes mBoxes;
 

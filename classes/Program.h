@@ -16,6 +16,7 @@
 #include "OutputManager.h"
 #include "Collection.h"
 #include "MessageHandler.h"
+#include "Utilities.h"
 
 /**
     Main project class. Aggregates i/o managers and box collection.

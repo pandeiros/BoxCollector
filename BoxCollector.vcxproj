@@ -44,7 +44,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalOptions>/D__DEBUG__ /c %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/D_DEBUG__ /c /D_CTR_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -57,7 +58,8 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalOptions>/D__DEBUG__ /c %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/D_DEBUG__ /c /D_CTR_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -74,6 +76,7 @@
     <ClCompile Include="classes\MessageHandler.cpp" />
     <ClCompile Include="classes\OutputManager.cpp" />
     <ClCompile Include="classes\Program.cpp" />
+    <ClCompile Include="classes\Utilities.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +88,7 @@
     <ClInclude Include="classes\MessageHandler.h" />
     <ClInclude Include="classes\OutputManager.h" />
     <ClInclude Include="classes\Program.h" />
+    <ClInclude Include="classes\Utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

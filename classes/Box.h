@@ -56,11 +56,11 @@ private:
 
     // Overloaded output stream operator for displaying information about boxes.
     friend std::ostream & operator<< (std::ostream & output, Box & box) {
-        output << std::right << std::setw (6) << box.getID() << ":  ";
-        output << std::left << std::setw (10) << box.getWidth ();
-        output << std::left << std::setw (10) << box.getLength ();
-        output << std::left << std::setw (10) << box.getHeight ();
-        output << std::left << std::setw (14) << box.getVolume () << "\n";
+        output << std::right << std::setw (12) << box.getID() << " | ";
+        output << std::left << std::setw (10) << box.getWidth () << " | ";
+        output << std::left << std::setw (10) << box.getLength () << " | ";
+        output << std::left << std::setw (10) << box.getHeight () << " | ";
+        output << std::left << std::setw (14) << box.getVolume () << "|\n";
 
         return output;
     }
