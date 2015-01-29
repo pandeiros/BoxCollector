@@ -27,7 +27,7 @@ public:
     enum AlgorithmType {
         // Boxes' volume based sort and arrange order.
         VOLUME,
-        XYZ
+        SD
     };
 
     // Group of boxes stacked together.
@@ -73,7 +73,7 @@ private:
     /// Different arranging algorithms.
     
     void arrangeFirstBest ();   //
-    //void arrangeXYZ (); // 
+    void arrangeBisect ();
 
     // All boxes.
     BoxStack mBoxes;

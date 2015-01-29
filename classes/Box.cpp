@@ -5,7 +5,7 @@
     Warsaw University of Technology
     Faculty of Electronics and Information Technology
 
-*/
+    */
 
 #include "Box.h"
 
@@ -25,6 +25,18 @@ Box::Box (const float length, const float width, const float height)
     mVolume (width * length * height), mID (GLOBAL_ID++) {
 
     normalize ();
+
+    if (mWidth == mLength && mWidth == mHeight) {
+        mSD = 0.f;
+        return;
+    }
+
+
+    // Calculate standard deviation.
+    float mean = (mLength + mWidth + mHeight) / 3.f;
+    float meanSquare = (mLength * mLength + mWidth * mWidth + mHeight * mHeight) / 3.f;
+    float meanDiff = std::abs (meanSquare - mean * mean);
+    mSD = std::sqrt (3.f * meanDiff / 2.f);
 }
 
 float Box::getWidth () {
@@ -41,6 +53,10 @@ float Box::getLength () {
 
 float Box::getVolume () const {
     return mVolume;
+}
+
+float Box::getSD () const {
+    return mSD;
 }
 
 unsigned long Box::getID () {

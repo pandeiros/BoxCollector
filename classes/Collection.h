@@ -41,6 +41,7 @@ public:
 
     Boxes * getBoxes ();    // Return pointer to Box container.
     BoxArrangement * getBoxArrangement ();  // Return pointer to arranged boxes.
+    float getTotalVolume ();    // Return total volume occupied by all boxes.
 
     /// Setters
 
@@ -56,6 +57,9 @@ private:
 
     // Arranged boxes.
     BoxArrangement * mBoxArrangement;
+
+    // Total volume occupied by all boxes.
+    float mTotalVolume = 0.f;
 };
 
 #endif

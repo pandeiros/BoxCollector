@@ -52,7 +52,7 @@ private:
     template <typename Type>
     std::string formatWidth (const Type value, const unsigned int width,
                              const char fill = '0', const std::string separator = " | ",
-                             bool showPos = false);
+                             bool showPos = false, bool addPercentage = false);
 
     // Filenames (with default values)
     std::string mResultsFilename = "results";
@@ -63,11 +63,11 @@ private:
 template <typename Type>
 inline std::string OutputManager::formatWidth (const Type value, const unsigned int width, 
                                                const char fill, const std::string separator, 
-                                               bool showPos) {
+                                               bool showPos, bool addPercentage) {
     std::stringstream ss;
     ss << std::fixed << std::setprecision (3) << std::left << std::setw (width)
         << std::setfill (fill) << (showPos ? std::showpos : std::noshowpos)
-        << value << separator;
+        << value << (addPercentage ? " %  " : "") << separator;
 
     return ss.str ();
 }

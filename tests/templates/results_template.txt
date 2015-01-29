@@ -1,19 +1,20 @@
 ### BOX COLLECTOR RESULTS ###
 
     >>> DATASET INFO <<<
-DATE       | $date 
+DATE       | $date
 RECORDS    | $records
 INPUT      | $input
 
     >>> TEST <<<
-ALGORITHM  | $algo
-TIME       | $time [sec]
-STACKS     | $stacks
-TOTAL VOL. | $volume
+ALGORITHM   | $algo
+TIME        | $time [sec]
+STACKS      | $stacks
+TOTAL VOL.  | $volume
+VOL. PROFIT | $profit %
 
 
 BOX ARRANGEMENT
-=====================================================================
- ID          | LENGTH     | WIDTH      | HEIGHT     | VOLUME        |
-=====================================================================
+======================================================================================
+ ID          | LENGTH     | WIDTH      | HEIGHT     | VOLUME        | STD. DEVIATION |
+======================================================================================
 $rows

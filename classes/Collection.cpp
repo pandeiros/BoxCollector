@@ -44,6 +44,7 @@ void Collection::generateRandomData (unsigned long number, unsigned int max, uns
         h = (float)(rand () % randomValue);
         h /= (float)std::pow (10, precision);
         mBoxes.push_back (new Box (l, w, h));
+        mTotalVolume += l * h * w;
     }
 }
 
@@ -55,8 +56,14 @@ BoxArrangement * Collection::getBoxArrangement () {
     return mBoxArrangement;
 }
 
+float Collection::getTotalVolume () {
+    return mTotalVolume;
+}
+
 void Collection::setBoxes (Boxes & boxes) {
     this->mBoxes = boxes;
+    for (Box * box : mBoxes)
+        mTotalVolume += box->getVolume ();
 }
 
 void Collection::setBoxArrangement (BoxArrangement * boxArrangement) {

@@ -44,7 +44,7 @@ void Program::run () {
         if (tests > 0)
             // TODO
             // Parametrize these values:
-            this->mCollection.generateRandomData (tests, 50, 3);
+            this->mCollection.generateRandomData (tests, 50, 4);
         else {
             MessageHandler::printMessage ("Number of tests is equal or less than 0.", MessageHandler::ERROR);
             return;

@@ -5,7 +5,7 @@
     Warsaw University of Technology
     Faculty of Electronics and Information Technology
 
-*/
+    */
 
 #include "OutputManager.h"
 
@@ -17,29 +17,20 @@ bool OutputManager::saveResults (Collection * collection, Interface * interf, bo
     std::stringstream ss;
 
     // Acquire desired final path.
-if (defaultPath) {
-time_t rawtime;
-  struct tm * timeinfo;
-  char buffer[80];
+    if (defaultPath) {
+        time_t rawtime;
+        struct tm * timeinfo;
+        char buffer[80];
 
-  time (&rawtime);
-  timeinfo = localtime(&rawtime);
+        time (&rawtime);
+        timeinfo = localtime (&rawtime);
 
-  strftime(buffer,80,"_%d-%m-%Y_%I-%M-%S",timeinfo);
-  std::string str(buffer);
+        strftime (buffer, 80, "_%d-%m-%Y_%H-%M-%S", timeinfo);
+        std::string str (buffer);
+        currentDateTime = str;
 
-  currentDateTime = str;
-//Utilities::replaceKeyword (":", "-", currentDateTime);
-    resultsPath = RESULTS_FOLDER + resultsPath + currentDateTime;
-currentDateTime = currentDateTime.substr(1, currentDateTime.size() - 2);
-        /*auto time = std::time (nullptr);
-        auto localTime = *std::localtime (&time);
-        std::stringstream ss;
-        ss << std::put_time (&localTime, "_%Y-%m-%d_%H.%M.%S.txt");
-        resultsPath = RESULTS_FOLDER + resultsPath + ss.str ();
-        ss.str ("");
-        ss << std::put_time (&localTime, "%Y-%m-%d %H:%M:%S");
-        currentDateTime = ss.str ();*/
+        resultsPath = RESULTS_FOLDER + resultsPath + currentDateTime + ".txt";
+        currentDateTime = currentDateTime.substr (1, currentDateTime.size () - 2);
     }
 
     // Open file template with prepared header
@@ -72,6 +63,7 @@ currentDateTime = currentDateTime.substr(1, currentDateTime.size() - 2);
     Utilities::replaceKeyword ("$time", std::to_string (collection->getBoxArrangement ()->getTime ()), templateContent);
     Utilities::replaceKeyword ("$stacks", std::to_string (collection->getBoxArrangement ()->getSize ()), templateContent);
     Utilities::replaceKeyword ("$volume", std::to_string (collection->getBoxArrangement ()->getTotalVolume ()), templateContent);
+    Utilities::replaceKeyword ("$profit", std::to_string (std::abs(100.f - collection->getBoxArrangement ()->getTotalVolume () * 100.f / collection->getTotalVolume ())), templateContent);
     Utilities::replaceKeyword ("$rows", collection->getBoxArrangement ()->getAllStacks (), templateContent);
 
     // Save stats.
@@ -94,33 +86,20 @@ bool OutputManager::saveGlobalResults (Collection * collection, Interface * inte
     }
 
     // Obtain date.
-    /*auto time = std::time (nullptr);
-    auto localTime = *std::localtime (&time);
-    std::stringstream ss;
-    ss << std::put_time (&localTime, "%Y-%m-%d %H:%M:%S");
-    currentDateTime = ss.str ();*/
-// Acquire desired final path.
-//    if (defaultPath) {
-time_t rawtime;
-  struct tm * timeinfo;
-  char buffer[80];
+    time_t rawtime;
+    struct tm * timeinfo;
+    char buffer[80];
 
-  time (&rawtime);
-  timeinfo = localtime(&rawtime);
+    time (&rawtime);
+    timeinfo = localtime (&rawtime);
 
-  strftime(buffer,80,"%d-%m-%Y_%H-%M-%S",timeinfo);
-  std::string str(buffer);
-
-  currentDateTime =  str;
-
-//Utilities::replaceKeyword (":", "-", currentDateTime);
-
-
+    strftime (buffer, 80, "%d-%m-%Y_%H-%M-%S", timeinfo);
+    std::string str (buffer);
+    currentDateTime = str;
 
     // Prepare output
     std::string row = "";
     std::string separator = " | ";
-
 
     // Save formatted file data.
     output << currentDateTime << " | ";
@@ -128,7 +107,9 @@ time_t rawtime;
     row += formatWidth<std::string> (interf->getStringParam ("--file"), 28, ' ', separator);
     row += formatWidth<std::string> (interf->getStringParam ("--output"), 28, ' ', separator);
     row += formatWidth<std::string> (interf->getStringParam ("--algorithm"), 15, ' ', separator);
-    row += formatWidth<float> (collection->getBoxArrangement()->getTime(), 8, ' ', separator);    
+    row += formatWidth<float> (collection->getBoxArrangement ()->getTime (), 9, ' ', separator);
+    row += formatWidth<float> (std::abs (100.f - collection->getBoxArrangement ()->getTotalVolume () * 100.f / collection->getTotalVolume ()), 
+                               7, ' ', separator, false, true);
 
     // Save data.
     output << row << "\n";

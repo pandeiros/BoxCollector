@@ -5,7 +5,7 @@
     Warsaw University of Technology
     Faculty of Electronics and Information Technology
 
-*/
+    */
 
 #include "BoxArrangement.h"
 
@@ -19,16 +19,21 @@ void BoxArrangement::arrange () {
 
     // Sorting based on heuristics.
     sort ();
+    //arrangeBisect ();
+    arrangeFirstBest ();
 
     // Choose arranging method.
-    switch (mType) {
+    /*switch (mType) {
         case VOLUME:
+            arrangeFirstBest ();
+            break;
+        case SD:
             arrangeFirstBest ();
             break;
 
         default:
             break;
-    }
+    }*/
 
     mTime = Utilities::timeStop ();
 }
@@ -42,15 +47,15 @@ void BoxArrangement::printAll () {
     std::cout << std::left << std::setw (12) << "Volume" << "\n";
 
     std::cout << getAllStacks ();
-   
+
 }
 
 std::string BoxArrangement::getAllStacks () {
     std::string content = "";
     unsigned int stackNr = 0;
     for (BoxStack & stack : mStackGroup) {
-        content += "                             Stack " + std::to_string (stackNr) + "\n";
-        content += "---------------------------------------------------------------------\n";
+        content += "                                     Stack " + std::to_string (stackNr) + "\n";
+        content += "--------------------------------------------------------------------------------------\n";
         for (Box * box : stack) {
             std::stringstream ss;
             ss << *box;
@@ -88,7 +93,13 @@ void BoxArrangement::sort () {
         case VOLUME:
             std::sort (mBoxes.begin (), mBoxes.end (),
                        [] (const Box * a, const Box * b) -> bool {
-                return a->getVolume() > b->getVolume();
+                return a->getVolume () > b->getVolume ();
+            });
+            break;
+        case SD:
+            std::sort (mBoxes.begin (), mBoxes.end (),
+                       [] (const Box * a, const Box * b) -> bool {
+                return a->getSD () < b->getSD ();
             });
             break;
 
@@ -134,4 +145,93 @@ void BoxArrangement::arrangeFirstBest () {
 
     }
 
+}
+
+void BoxArrangement::arrangeBisect () {
+    if (mBoxes.size () <= 1) {
+        return;
+    }
+
+    int left, right, pivot;
+    int found = -1;
+
+
+    for (Box * box : mBoxes) {
+        left = 0;
+        right = mStackGroup.size () - 1;
+        pivot = (left + right + 1) / 2;
+        found = -1;
+
+        // No stacks so far.
+        if (right < 0) {
+            BoxStack stack;
+            stack.push_back (box);
+            mStackGroup.push_back (stack);
+            continue;
+        }
+
+        // One stack with one element.
+        if (right == 0) {
+            if (box->check (mStackGroup[0][mStackGroup[0].size() - 1])) {
+                mStackGroup[0].push_back (box);
+            }
+            else {
+                BoxStack stack;
+                stack.push_back (box);
+                mStackGroup.push_back (stack);
+            }
+            continue;
+        }
+
+        // Find match by bisecting the box collection.
+        while (pivot != right) {
+            bool checked = box->check (mStackGroup[pivot][mStackGroup[pivot].size () - 1]);
+            bool goingLeft = false;
+
+            if (found != -1) {
+                if (checked) {
+                    goingLeft = true;
+                }
+                else {
+                    goingLeft = false;
+                }
+            }
+            else {
+                if (checked)
+                    found = pivot;
+
+                goingLeft = true;
+            }
+
+            if (goingLeft)
+                right = pivot;
+            else
+                left = pivot;
+            pivot = (left + right + 1) / 2;
+
+        }
+
+
+        // Check the left one, because pivot won't check there if left and right are too close.
+        if ((right - left) == 1) {
+            if (box->check (mStackGroup[left][mStackGroup[left].size () - 1])) {
+                mStackGroup[left].push_back (box);
+                continue;
+            }
+        }
+
+        if (box->check (mStackGroup[pivot][mStackGroup[pivot].size () - 1])) {
+            mStackGroup[pivot].push_back (box);
+           
+        }
+        // We found a good one, but kept on searching.
+        else if (pivot < found) {
+            mStackGroup[found].push_back (box);
+        }
+        else { 
+            BoxStack stack;
+            stack.push_back (box);
+            mStackGroup.push_back (stack);
+        }
+    }
 }
