@@ -36,15 +36,22 @@ void Program::run () {
         if (mInterface.getStringParam ("--generate-tests") != "")
             MessageHandler::printMessage ("Input file given and data generation requested - generating ignored.",
             MessageHandler::WARNING);
+
+        MessageHandler::printMessage ("Loading data from file", MessageHandler::INFO);
+        Utilities::timeStart ();
         this->acquireData ();
+        MessageHandler::printMessage (std::to_string (Utilities::timeStop()), MessageHandler::TIME);
     }
+
     // Generate data.
     else if (mInterface.getStringParam ("--generate-tests") != "") {
         unsigned int tests = Utilities::convertFromString<unsigned int> (mInterface.getStringParam ("--generate-tests"));
-        if (tests > 0)
-            // TODO
-            // Parametrize these values:
-            this->mCollection.generateRandomData (tests, 50, 4);
+        if (tests > 0) {
+            MessageHandler::printMessage ("Generating records", MessageHandler::INFO);
+            Utilities::timeStart ();
+            this->mCollection.generateRandomData (tests, 100, 4);
+            MessageHandler::printMessage (std::to_string (Utilities::timeStop ()), MessageHandler::TIME);
+        }
         else {
             MessageHandler::printMessage ("Number of tests is equal or less than 0.", MessageHandler::ERROR);
             return;
@@ -57,9 +64,26 @@ void Program::run () {
     MessageHandler::printDebugSection ("Collection content", false);
 #endif
 
-    mCollection.setBoxArrangement (new BoxArrangement (
-        *mCollection.getBoxes (), BoxArrangement::VOLUME));
+    // Read parameters for algorithm.
+    BoxArrangement::AlgorithmType aType = BoxArrangement::FB;
+    BoxArrangement::HeuristicType hType = BoxArrangement::VOL;
 
+    std::string aParam = "", hParam = "";
+    aParam = mInterface.getStringParam ("--algorithm");
+    hParam = mInterface.getStringParam ("--heuristic");
+
+    if (aParam != "") {
+        aParam == "BS" ? aType = BoxArrangement::BS : aType = BoxArrangement::FB;
+    }
+
+    if (hParam != "") {
+        hParam == "SD" ? hType = BoxArrangement::SD : hType = BoxArrangement::VOL;
+    }
+
+    mCollection.setBoxArrangement (new BoxArrangement (
+        *mCollection.getBoxes (), aType, hType));
+
+    // Begin arranging.
     mCollection.getBoxArrangement ()->arrange ();
 
 #ifdef __DEBUG__

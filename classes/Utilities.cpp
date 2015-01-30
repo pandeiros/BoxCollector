@@ -14,7 +14,7 @@ float Utilities::timeStop () {
 
 void Utilities::replaceKeyword (const std::string keyword, std::string value, std::string & text) {
     if (value == "")
-        value = "-";
+        value = "default";
 
     // If keyword is not found, print an error.
     unsigned int keywordPos = text.find (keyword);

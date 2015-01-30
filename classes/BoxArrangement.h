@@ -25,9 +25,14 @@ class BoxArrangement {
 public:
     // Arranging algorithm types.
     enum AlgorithmType {
-        // Boxes' volume based sort and arrange order.
-        VOLUME,
-        SD
+        FB,     // First Best
+        BS      // Bisect
+    };
+
+    // Sorting types.
+    enum HeuristicType {
+        VOL,    // Volume
+        SD      // Standard deviation
     };
 
     // Group of boxes stacked together.
@@ -43,7 +48,7 @@ public:
 
     // Constructor with copy of the boxes from Collection and specified algorithm to be used.
     // It does not copy boxes itself, just pointers. No data duplication.
-    BoxArrangement (BoxStack boxes, AlgorithmType type);
+    BoxArrangement (BoxStack boxes, AlgorithmType aType, HeuristicType hType);
 
     // Start arranging (with previously specified algorithm).
     void arrange ();
@@ -55,7 +60,10 @@ public:
     std::string getAllStacks ();
 
     // Return type of algorithm used.
-    AlgorithmType getType ();
+    AlgorithmType getAlgorithmType ();
+
+    // Return type of heuristic used.
+    HeuristicType getHeuristicType ();
 
     // Return sum of biggest boxes' volumes.
     float getTotalVolume ();
@@ -81,8 +89,8 @@ private:
     // Separate stacks of boxes.
     StackGroup mStackGroup;
 
-    // Type of algorithm used.
-    AlgorithmType mType;
+    AlgorithmType mAType;   // Type of algorithm used.
+    HeuristicType mHType;   // Type of heuristic used.
 
     // Elapsed time per algorithm run.
     float mTime = 0.f;

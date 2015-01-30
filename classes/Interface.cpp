@@ -49,6 +49,7 @@ void Interface::configureParameters () {
     mapParamStrings["-o"] = std::make_pair ("", "--output");
     mapParamStrings["--generate-tests"] = std::make_pair ("", "--generate-tests");
     mapParamStrings["--algorithm"] = std::make_pair ("", "--algorithm");
+    mapParamStrings["--heuristic"] = std::make_pair ("", "--heuristic");
 }
 
 void Interface::printParams () {
@@ -68,11 +69,17 @@ void Interface::printParams () {
 }
 
 void Interface::printHelp () {
-    std::cout << " >> Help:\n";
+    std::cout << " >> Help <<\n";
     std::cout << std::left;
     std::cout << "Box Collector\n";
     std::cout << "Simple program to solve problem with not enough space to store Your boxes!\n";
-    std::cout << "Provides quick solution in packing boxes in one another.\n";
+    std::cout << "Provides quick solution in packing boxes in one another.\n\n";
+    std::cout << "Algorithm types:\n";
+    std::cout << "  FB - First Best : Iterate from the beginning to find suitable box.\n";
+    std::cout << "  BS - Bisect : Repeat dividing the set into half and checking boxes.\n\n";
+    std::cout << "Heuristics available:\n";
+    std::cout << "  VOL - Volume : Sort by volume of the boxes, descending.\n";
+    std::cout << "  SD - Standard Deviation : Sort by standard deviation of the box's sizes, descending.\n\n";
     std::cout << "Use   --usage   parameter to check available options.\n";
 }
 
@@ -85,10 +92,12 @@ void Interface::printUsage () {
     std::cout << std::setw (size) << " -f | --file[filename]" << " : Input file with information about boxes.\n";
     std::cout << std::setw (size) << " -o | --output[filename]" << " : Output file to be created with program results.\n";
     std::cout << std::setw (size) << " --generate-tests [number_of_boxes]" << " : Forces program to generate its own tests in given number.\n";
-    std::cout << std::setw (size) << " --algorithm [VOLUME]" << " : Specifies which algorithm to use. If not specified, program will use the best one.\n";
+    std::cout << std::setw (size) << " --algorithm [FB | BS]" << " : Specifies which arrange algorithm to use (default FB).\n";
+    std::cout << std::setw (size) << " --heuristic [VOL | SD]" << " : Specifies which sorting heuristic to use (default VOL).\n";
 }
 
 std::string Interface::getStringParam (const std::string key) {
+    
     if (mapParamStrings.find (key) != mapParamStrings.end ())
         return mapParamStrings[key].first;
     else

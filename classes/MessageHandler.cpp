@@ -17,6 +17,12 @@ void MessageHandler::printMessage (const std::string message, Type type) {
         case WARNING:
             std::cout << "\n<?> Warning : " << message << "\n\n";
             break;
+        case INFO:
+            std::cout << "\n   > > >  " << message << "  < < <\n\n";
+            break;
+        case TIME:
+            std::cout << "=============== Time:\t" << message << " [sec] ====\n\n";
+            break;
 
         default:
             break;

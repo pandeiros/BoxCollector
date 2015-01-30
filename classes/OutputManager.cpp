@@ -60,6 +60,7 @@ bool OutputManager::saveResults (Collection * collection, Interface * interf, bo
     Utilities::replaceKeyword ("$records", std::to_string (collection->getBoxes ()->size ()), templateContent);
     Utilities::replaceKeyword ("$input", interf->getStringParam ("--file"), templateContent);
     Utilities::replaceKeyword ("$algo", interf->getStringParam ("--algorithm"), templateContent);
+    Utilities::replaceKeyword ("$heur", interf->getStringParam ("--heuristic"), templateContent);
     Utilities::replaceKeyword ("$time", std::to_string (collection->getBoxArrangement ()->getTime ()), templateContent);
     Utilities::replaceKeyword ("$stacks", std::to_string (collection->getBoxArrangement ()->getSize ()), templateContent);
     Utilities::replaceKeyword ("$volume", std::to_string (collection->getBoxArrangement ()->getTotalVolume ()), templateContent);
@@ -104,9 +105,9 @@ bool OutputManager::saveGlobalResults (Collection * collection, Interface * inte
     // Save formatted file data.
     output << currentDateTime << " | ";
     row += formatWidth<unsigned int> (collection->getBoxes ()->size (), 10, ' ', separator);
-    row += formatWidth<std::string> (interf->getStringParam ("--file"), 28, ' ', separator);
-    row += formatWidth<std::string> (interf->getStringParam ("--output"), 28, ' ', separator);
-    row += formatWidth<std::string> (interf->getStringParam ("--algorithm"), 15, ' ', separator);
+    row += formatWidth<std::string> ((interf->getStringParam ("--file") == "" ? "default" : interf->getStringParam ("--file")), 28, ' ', separator);
+    row += formatWidth<std::string> ((interf->getStringParam ("--output") == "" ? "default" : interf->getStringParam ("--output")), 28, ' ', separator);
+    row += formatWidth<std::string> ((interf->getStringParam ("--algorithm") == "" ? "default" : interf->getStringParam ("--algorithm")), 15, ' ', separator);
     row += formatWidth<float> (collection->getBoxArrangement ()->getTime (), 9, ' ', separator);
     row += formatWidth<float> (std::abs (100.f - collection->getBoxArrangement ()->getTotalVolume () * 100.f / collection->getTotalVolume ()), 
                                7, ' ', separator, false, true);

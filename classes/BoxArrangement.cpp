@@ -9,31 +9,36 @@
 
 #include "BoxArrangement.h"
 
-BoxArrangement::BoxArrangement (BoxStack boxes, AlgorithmType type) :
-mBoxes (boxes), mType (type) {
+BoxArrangement::BoxArrangement (BoxStack boxes, AlgorithmType aType, HeuristicType hType) :
+mBoxes (boxes), mHType (hType), mAType (aType) {
 
 }
 
 void BoxArrangement::arrange () {
+    MessageHandler::printMessage ("Sorting boxes", MessageHandler::INFO);
     Utilities::timeStart ();
 
     // Sorting based on heuristics.
     sort ();
-    //arrangeBisect ();
-    arrangeFirstBest ();
+    MessageHandler::printMessage (std::to_string (Utilities::timeStop ()), MessageHandler::TIME);
+
+
+    MessageHandler::printMessage ("Arranging boxes", MessageHandler::INFO);
+    Utilities::timeStart ();
 
     // Choose arranging method.
-    /*switch (mType) {
-        case VOLUME:
+    switch (mAType) {
+        case FB:
             arrangeFirstBest ();
             break;
-        case SD:
-            arrangeFirstBest ();
+        case BS:
+            arrangeBisect ();
             break;
 
         default:
             break;
-    }*/
+    }
+    MessageHandler::printMessage (std::to_string (Utilities::timeStop ()), MessageHandler::TIME);
 
     mTime = Utilities::timeStop ();
 }
@@ -68,8 +73,12 @@ std::string BoxArrangement::getAllStacks () {
     return content;
 }
 
-BoxArrangement::AlgorithmType BoxArrangement::getType () {
-    return mType;
+BoxArrangement::AlgorithmType BoxArrangement::getAlgorithmType () {
+    return mAType;
+}
+
+BoxArrangement::HeuristicType BoxArrangement::getHeuristicType () {
+    return mHType;
 }
 
 float BoxArrangement::getTotalVolume () {
@@ -89,8 +98,8 @@ float BoxArrangement::getTime () {
 }
 
 void BoxArrangement::sort () {
-    switch (mType) {
-        case VOLUME:
+    switch (mHType) {
+        case VOL:
             std::sort (mBoxes.begin (), mBoxes.end (),
                        [] (const Box * a, const Box * b) -> bool {
                 return a->getVolume () > b->getVolume ();
@@ -172,7 +181,7 @@ void BoxArrangement::arrangeBisect () {
 
         // One stack with one element.
         if (right == 0) {
-            if (box->check (mStackGroup[0][mStackGroup[0].size() - 1])) {
+            if (box->check (mStackGroup[0][mStackGroup[0].size () - 1])) {
                 mStackGroup[0].push_back (box);
             }
             else {
@@ -222,13 +231,13 @@ void BoxArrangement::arrangeBisect () {
 
         if (box->check (mStackGroup[pivot][mStackGroup[pivot].size () - 1])) {
             mStackGroup[pivot].push_back (box);
-           
+
         }
         // We found a good one, but kept on searching.
         else if (pivot < found) {
             mStackGroup[found].push_back (box);
         }
-        else { 
+        else {
             BoxStack stack;
             stack.push_back (box);
             mStackGroup.push_back (stack);

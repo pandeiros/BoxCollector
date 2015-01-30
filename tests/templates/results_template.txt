@@ -7,6 +7,7 @@ INPUT      | $input
 
     >>> TEST <<<
 ALGORITHM   | $algo
+HEURISTIC   | $heur
 TIME        | $time [sec]
 STACKS      | $stacks
 TOTAL VOL.  | $volume

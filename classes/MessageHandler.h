@@ -27,7 +27,8 @@ public:
         UNKNOWN,
         INFO,
         WARNING,
-        ERROR
+        ERROR,
+        TIME
     };
 
     // TODO Implement later.
